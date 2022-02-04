@@ -33,6 +33,11 @@ CHAIN_TO_CODE = {
 SLAB_CONTRACT = '0xf8458c0D0b2Ba7bf8A760c9257B3333cDb4F803E';
 
 
+app.get('/', async (req, res) => {
+  res.send('Coming soon.')
+})
+
+
 app.get('/meta/:tokenId', async (req, res) => {
   const tokenId = req.params.tokenId
 

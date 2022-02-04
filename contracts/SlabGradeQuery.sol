@@ -34,8 +34,7 @@ contract SlabGradeQuery is ISlabGradeQuery, ChainlinkClient {
 
 
     /**
-     * Create a Chainlink request to retrieve API response, find the target
-     * data, then multiply by 1000000000000000000 (to remove decimal places from data).
+     * Create a Chainlink request to retrieve API response.
      */
 
     function requestTokenGrade(address _tokenOwner, uint256 _chainId, address _tokenContract, uint256 _tokenId) override public returns (bytes32 requestId_) {
@@ -66,18 +65,6 @@ contract SlabGradeQuery is ISlabGradeQuery, ChainlinkClient {
      */
     function grade() override public returns (uint256 grade_) {
         grade_ = slabGrade;
-    }
-
-
-    /**
-     * Allow for LINK to be withdrawn from contract
-     */ 
-
-    function withdrawLink() override external {
-    	require(msg.sender == 0x498E93Bc04955fCBAC04BCF1a3BA792f01Dbaa96);
-
-    	// link = IERC20(link)
-    	// link.safeTransfer(msg.sender, link.balanceOf(address(self)));
     }
 
 }
