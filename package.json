@@ -1,0 +1,36 @@
+{
+  "name": "slabbed-xyz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomwade/slabbed.git"
+  },
+  "author": "Twade",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomwade/slabbed/issues"
+  },
+  "homepage": "https://github.com/tomwade/slabbed#readme",
+  "dependencies": {
+    "@chainlink/contracts": "^0.3.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "moralis": "^1.2.4"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.4",
+    "@nomiclabs/hardhat-waffle": "^2.0.2",
+    "chai": "^4.3.6",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.4",
+    "hardhat": "^2.8.3"
+  }
+}
