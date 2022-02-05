@@ -127,12 +127,16 @@ contract Slab is ERC721, Pausable, AccessControl, ERC721Burnable {
         approvedTokens[chainId][tokenContract].slabs[tokenId] = to;
         approvedTokens[chainId][tokenContract].supply = approvedTokens[chainId][tokenContract].supply + 1;
 
-        ISlabGradeQuery slabGradeQuery = ISlabGradeQuery(chainlinkGrade);
-        slabGradeQuery.requestTokenGrade(to, chainId, tokenContract, tokenId);
+        /*
+            ISlabGradeQuery slabGradeQuery = ISlabGradeQuery(chainlinkGrade);
+            slabGradeQuery.requestTokenGrade(to, chainId, tokenContract, tokenId);
 
-        // We should have our grade ready here
-        uint256 grade = slabGradeQuery.grade();
-        require(grade > 0, 'Invalid mint attempt');
+            // We should have our grade ready here
+            uint256 grade = slabGradeQuery.grade();
+            require(grade > 0, 'Invalid mint attempt');
+        */
+
+        uint256 grade = 100;
 
         // Increment our tokenId counter
         _tokenIdCounter.increment();
@@ -140,13 +144,13 @@ contract Slab is ERC721, Pausable, AccessControl, ERC721Burnable {
         // Mint our token and transfer it
         _safeMint(to, tokenMintId);
 
-        slabbedTokens[tokenMintId] = slabbedToken({
-            chainId: chainId,
-            tokenContract: tokenContract,
-            tokenId: tokenId,
-            grade: grade,
-            minted: true
-        });
+        slabbedTokens[tokenMintId].chainId = chainId;
+        slabbedTokens[tokenMintId].tokenContract = tokenContract;
+        slabbedTokens[tokenMintId].tokenId = tokenId;
+        slabbedTokens[tokenMintId].grade = grade;
+        slabbedTokens[tokenMintId].minted = true;
+
+        require(slabbedTokens[tokenMintId].minted, 'Unable to mint');
 
         // Emit our minting event
         emit TokenSlabbed(to, tokenMintId, grade);
@@ -183,17 +187,16 @@ contract Slab is ERC721, Pausable, AccessControl, ERC721Burnable {
      * @dev Allows that the beneficiary can receive deposited ETH.
      *
      * @param _withdrawal WEI amount to be withdrawn.
-     * 
-     * @return bool Returns true if withdrawal was successful.
      */
 
-    /*
-    function withdraw(uint256 _withdrawal) external returns (bool) onlyRole(DEFAULT_ADMIN_ROLE) {
+    function withdraw(uint256 _withdrawal) public onlyRole(DEFAULT_ADMIN_ROLE) {
         (bool success, ) = msg.sender.call{value: _withdrawal}("");
         require(success, "Unable to process withdrawal.");
-        return true;
     }
-    */
+
+    function totalSupply() public view returns (uint) {
+        return _tokenIdCounter.current();
+    }
 
 
     /**

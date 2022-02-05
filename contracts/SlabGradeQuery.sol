@@ -41,7 +41,7 @@ contract SlabGradeQuery is ISlabGradeQuery, ChainlinkClient {
         Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
 
         // Set the URL to perform the GET request on
-        request.add('get', string(abi.encodePacked('https://api.slabbed.xyz/quality/', _tokenOwner, '/', _chainId, '/', _tokenContract, '/', _tokenId)));
+        request.add('get', string(abi.encodePacked('https://slabbed.xyz/quality/', _tokenOwner, '/', _chainId, '/', _tokenContract, '/', _tokenId)));
 
         // Set the path to find the desired data in the API response
         request.add('path', 'data.grade');

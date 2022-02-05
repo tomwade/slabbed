@@ -1,7 +1,9 @@
-const hre = require("hardhat");
+const hre = require("hardhat")
+require('dotenv').config()
+
 
 async function main() {
-  const slab_query_contract_address = '0xbe93Fdf4De9e52bAB466b7DBF6502Ae1B21C1DAC'
+  const slab_query_contract_address = process.env.SLAB_QUERY_ADDRESS
 
   const to = '0x498E93Bc04955fCBAC04BCF1a3BA792f01Dbaa96'
   const contract_address = '0xe63be4ed45d32e43ff9b53ae9930983b0367330a'

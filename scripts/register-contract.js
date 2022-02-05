@@ -1,14 +1,17 @@
-const hre = require("hardhat");
+const hre = require("hardhat")
+require('dotenv').config()
+
 
 async function main() {
-  const slab_contract_address = '0x6675a925fEdF18d6Fd019e69AdB6392132695DE3'
+  const slab_contract_address = process.env.SLAB_ADDRESS
 
-  const contract_address = '0xe63be4ed45d32e43ff9b53ae9930983b0367330a'
-  const contract_chain = '1'
+  let contract_address = '0xe63be4ed45d32e43ff9b53ae9930983b0367330a'
+  let contract_chain = '1'
 
   const Slab = await hre.ethers.getContractFactory('Slab')
   const slab = await Slab.attach(slab_contract_address)
 
+  // Approve RareBunniClub
   let contract = await slab.approvedTokens(contract_chain, contract_address)
   if (contract.enabled == true) {
     console.warn('Contract already exists.')
@@ -16,7 +19,23 @@ async function main() {
   else {
     await slab.addApprovedToken(contract_chain, contract_address)
 
-    console.log('=== Contract Added ===')
+    console.log('=== RareBunniClub Contract Added ===')
+    console.log('Address:', contract_address)
+    console.log('Chain:', contract_chain)
+  }
+
+  contract_address = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d'
+  contract_chain = '1'
+
+  // Approve BAYC
+  contract = await slab.approvedTokens(contract_chain, contract_address)
+  if (contract.enabled == true) {
+    console.warn('Contract already exists.')
+  }
+  else {
+    await slab.addApprovedToken(contract_chain, contract_address)
+
+    console.log('=== BAYC Contract Added ===')
     console.log('Address:', contract_address)
     console.log('Chain:', contract_chain)
   }
