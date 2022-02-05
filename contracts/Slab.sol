@@ -127,16 +127,12 @@ contract Slab is ERC721, Pausable, AccessControl, ERC721Burnable {
         approvedTokens[chainId][tokenContract].slabs[tokenId] = to;
         approvedTokens[chainId][tokenContract].supply = approvedTokens[chainId][tokenContract].supply + 1;
 
-        /*
-            ISlabGradeQuery slabGradeQuery = ISlabGradeQuery(chainlinkGrade);
-            slabGradeQuery.requestTokenGrade(to, chainId, tokenContract, tokenId);
+        ISlabGradeQuery slabGradeQuery = ISlabGradeQuery(chainlinkGrade);
+        slabGradeQuery.requestTokenGrade(to, chainId, tokenContract, tokenId);
 
-            // We should have our grade ready here
-            uint256 grade = slabGradeQuery.grade();
-            require(grade > 0, 'Invalid mint attempt');
-        */
-
-        uint256 grade = 100;
+        // We should have our grade ready here
+        uint256 grade = slabGradeQuery.grade();
+        require(grade > 0, 'Invalid mint attempt');
 
         // Increment our tokenId counter
         _tokenIdCounter.increment();

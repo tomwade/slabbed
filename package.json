@@ -23,6 +23,7 @@
     "@chainlink/contracts": "^0.3.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
+    "get-pixels": "^3.3.3",
     "moralis": "^1.2.4",
     "sharp": "^0.30.0"
   },
