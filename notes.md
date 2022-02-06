@@ -6,12 +6,32 @@
 0xe21dc18513e3e68a52f9fcdacfd56948d43a11c6
 
 
+
 -- Twade RareBunni --
 
 1
 0xe63be4ed45d32e43ff9b53ae9930983b0367330a
 1
 0x498E93Bc04955fCBAC04BCF1a3BA792f01Dbaa96
+
+
+
+-- Twade RareBunni 2 --
+
+1
+0xe63be4ed45d32e43ff9b53ae9930983b0367330a
+471
+0x498E93Bc04955fCBAC04BCF1a3BA792f01Dbaa96
+
+
+
+
+
+
+
+
+
+
 
 
 
